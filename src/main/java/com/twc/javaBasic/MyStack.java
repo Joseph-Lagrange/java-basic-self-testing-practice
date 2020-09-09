@@ -24,7 +24,8 @@ public class MyStack {
 
         // TODO: Please push the value into the storage here.
         // <--start
-
+        storage[value] = value;
+        count += 1;
         // --end-->
     }
 
@@ -37,7 +38,11 @@ public class MyStack {
         //  IMPORTANT: You SHOULD NOT USE COLLECTIONS (such as List<T>) OTHER THAN ARRAY.
         //
         // <--start
-
+        int[] copy = new int[newCapacity];
+        System.arraycopy(storage, 0, copy, 0,
+                Math.min(storage.length, newCapacity));
+        storage = copy;
+        capacity = newCapacity;
         // --end-->
     }
 
@@ -57,7 +62,9 @@ public class MyStack {
         //  Please pop one element from the array. You should update the `count` field
         //  as well.
         // <--start
-
+        if (storage != null && storage.length > 0)
+            return storage[--count];
+        else
         // --end-->
 
         throw new UnsupportedOperationException("Stack is empty.");
